@@ -1,5 +1,5 @@
 {
-  "name": "1-Passport-Example",
+  "name": "project-2",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -10,9 +10,16 @@
     "fix": "eslint --fix .",
     "watch": "nodemon server.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vxmao87/project-2.git"
+  },
+  "author": "Vinh, Julie, Jensen, and Eric",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vxmao87/project-2/issues"
+  },
+  "homepage": "https://github.com/vxmao87/project-2#readme",
   "dependencies": {
     "bcryptjs": "2.4.3",
     "express": "^4.17.0",
