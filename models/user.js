@@ -31,5 +31,6 @@ module.exports = function(sequelize, DataTypes) {
       null
     );
   });
+  // User.hasMany(Category);
   return User;
 };
