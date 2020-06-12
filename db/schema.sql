@@ -16,12 +16,12 @@ CREATE TABLE users (
 CREATE TABLE userCats (
     id integer auto_increment not null,
     category varchar(30),
-    user_id foreign key
+    FOREIGN KEY (id) REFERENCES users(id)
 )
 
 #Connects to 1 or many users (pages that the user favorites)
 CREATE TABLE userPages (
     id integer auto_increment not null,
     page varchar(30) not null,
-    user_id foreign key
+    FOREIGN KEY (id) REFERENCES users(id)
 )
