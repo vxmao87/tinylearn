@@ -1,12 +1,12 @@
 module.exports = function(sequelize, DataTypes) {
-    const Page = sequelize.define("userPages", {
+    const Page = sequelize.define("Page", {
         page: {
             type: DataTypes.STRING,
             allowNull: false
         }
     });
     Page.associate = function(models) {
-        Page.belongsTo(models.userCats, {
+        Page.belongsTo(models.Category, {
             foreignKey: {
                 allowNull: false
             }
