@@ -3,7 +3,14 @@ module.exports = function(sequelize, DataTypes) {
         category: {
             type: DataTypes.STRING,
             allowNull: false
-        },
+        }
     });
+
+    Category.associate = function(models) {
+        Category.hasMany(models.userPages, {
+            onDelete: "cascade"
+        });
+    };
+
     return Category;
 };
