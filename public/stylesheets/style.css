@@ -3,7 +3,12 @@ form.login {
   margin-top: 50px;
 }
 
-.header {
-  max-width: 25%;
-  height:auto;
+@font-face {
+  font-family: orangeJuice;
+  src: url("public/assets/orange_juice_2.0.ttf");
+}
+
+h1 {
+  font-family: orangeJuice;
+  font-size: 55px;
 }
