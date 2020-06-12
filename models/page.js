@@ -5,5 +5,12 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: false
         }
     });
+    Page.associate = function(models) {
+        Page.belongsTo(models.userCats, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+    };
     return Page;
 }
