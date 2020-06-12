@@ -1,0 +1,53 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="assets/book.png" alt="Book" width="70" height="70" />
+            <img src="assets/tinylearn.png" alt="TinyLearn" width="120" height="50" />
+        </div>
+        <div>
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+            <a class="navbar-brand" href="/mylearns">
+                MyLearns
+            </a>
+            <a class="navbar-brand" href="/about">
+                About
+            </a>
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h3>Check out your past learns!</h3>
+                </div>
+                <div class="card-body">
+
+                    {{#each subject}}
+                    <div>{{subject}}</div>
+                    {{/each }}
+
+                </div>
+                <div class="card-body">
+
+                    {{#each subject}}
+                    <div>{{subject}}</div>
+                    {{/each }}
+
+                </div>
+                <div class="card-body">
+
+                    {{#each subject}}
+                    <div>{{subject}}</div>
+                    {{/each }}
+
+                </div>
+            </div>
+        </div>
+    </div>

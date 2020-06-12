@@ -3,11 +3,6 @@ form.login {
   margin-top: 50px;
 }
 
-form.signup,
-form.login {
-  margin-top: 50px;
-}
-
 @font-face {
   font-family: orangeJuice;
   src: url("public/assets/orange_juice_2.0.ttf");
