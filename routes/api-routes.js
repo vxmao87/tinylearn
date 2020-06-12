@@ -50,4 +50,27 @@ module.exports = function(app) {
       });
     }
   });
+
+  // Route for grabbing data about a user's subjects
+  app.get("/api/subjects", (req, res) => {
+    if (!req.user) {
+      // If the user isn't logged in, nothing will show up
+      res.json();
+    } else {
+      // Otherwise, send info about the subjects the user will see
+      res.json({});
+    }
+  });
+
+  app.post("/api/subject/add", (req, res) => {
+    db.Category.create({
+      category: req.body.category
+    })
+      .then(() => {
+        res.status(200).end();
+      })
+      .catch(err => {
+        res.status(404).json(err);
+      });
+  });
 };
