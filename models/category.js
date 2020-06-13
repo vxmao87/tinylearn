@@ -5,17 +5,5 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false
     }
   });
-
-  Category.associate = function(models) {
-    Category.hasMany(models.Page, {
-      onDelete: "cascade"
-    });
-    Category.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
-
   return Category;
 };
