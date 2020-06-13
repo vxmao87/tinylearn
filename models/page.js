@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  const Page = sequelize.define("Page", {
+  const Page = sequelize.define("page", {
     page: {
       type: DataTypes.STRING,
       allowNull: false
