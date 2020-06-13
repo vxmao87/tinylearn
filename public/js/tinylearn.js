@@ -53,4 +53,15 @@ $(document).ready(() => {
       $(".renderhere").html(knowledgeToRender);
     });
   }
+
+  $("#addSubject").on("click", () => {
+    
+    // $.ajax("/api/burgers", {
+    //   type: "POST",
+    //   data: newBurger
+    // }).then(function() {
+    //   location.reload();
+    // });
+  });
+  
 });
