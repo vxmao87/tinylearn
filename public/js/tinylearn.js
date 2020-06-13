@@ -33,6 +33,7 @@ $(document).ready(() => {
       retrieveAndRenderKnowledge(pickedPage);
     });
   }
+
   function retrieveAndRenderKnowledge(pickedPage) {
     const pageParams = {
       action: "query",
@@ -64,34 +65,52 @@ $(document).ready(() => {
     });
     postPickedPage(pickedPage);
   }
+
   function postPickedPage(pickedPage) {
     $.post("api/page", {
       name: pickedPage
     });
   }
-  // $("#addSubject").on("click", () => {
-  //   const categoryToPost = $("#subjectName").val();
-  //   const possibleError = validateCat(categoryToPost);
-  //   console.log(possibleError);
-  // });
-  // function validateCat(categoryToPost) {
-  //   const cmtitleInput = "Category:" + categoryToPost;
-  //   const validateParams = {
-  //     action: "query",
-  //     list: "categorymembers",
-  //     cmtitle: cmtitleInput,
-  //     cmtype: "subcat",
-  //     format: "json"
-  //   };
 
-  //   let validateUrl = url + "?origin=*";
-  //   Object.keys(validateParams).forEach(key => {
-  //     validateUrl += "&" + key + "=" + validateParams[key];
-  //   });
+  $("#addSubject").on("click", () => {
+    const categoryToPost = $("#subjectName").val();
+    const cmtitleInput = "Category:" + categoryToPost;
+    const validateParams = {
+      action: "query",
+      list: "categorymembers",
+      cmtitle: cmtitleInput,
+      cmlimit: "20",
+      format: "json"
+    };
 
-  //   fetch(validateUrl).then(response => {
-  //     const category = response.query.categorymembers;
-  //     return category[0].title;
-  //   });
-  // }
+    let validateUrl = url + "?origin=*";
+    Object.keys(validateParams).forEach(key => {
+      validateUrl += "&" + key + "=" + validateParams[key];
+    });
+
+    $.ajax({
+      url: validateUrl,
+      method: "GET"
+    }).then(response => {
+      const possibleError = response.query.categorymembers[0];
+      // eslint-disable-next-line eqeqeq
+      if (possibleError == null) {
+        $(".addSubjectResponse").text(
+          `We're sorry, but ${categoryToPost} isn't a valid category name.`
+        );
+        return;
+        // eslint-disable-next-line no-else-return
+      } else {
+        $(".addSubjectResponse").text(`${categoryToPost} added to database.`);
+        postCat(categoryToPost);
+      }
+    });
+  });
+
+  function postCat(categoryToPost) {
+    $.post("api/category", {
+      name: categoryToPost
+    });
+  }
+  
 });
