@@ -21,3 +21,7 @@ body, html {
   background-color: teal;
   color: white;
 }
+
+#card-body {
+  background-color: #fdfd96;
+}
