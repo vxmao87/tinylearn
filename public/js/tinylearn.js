@@ -2,11 +2,19 @@ $(document).ready(() => {
   const url = "https://en.wikipedia.org/w/api.php";
 
   // eslint-disable-next-line no-unused-vars
-  $(".GIVEMERANDOMPAGEBUTTON").on("click", catFromDb => {
+  $("#randomPageFromWiki").on("click", () => {
+    $.get("/api/categories").then(data => {
+      const passedCat = data.category;
+      findAPage(passedCat);
+    });
+  });
+
+  function findAPage(passedCat) {
+    const cmtitleInput = "Category:" + passedCat;
     const catParams = {
       action: "query",
       list: "categorymembers",
-      cmtitle: "Category:Programming",
+      cmtitle: cmtitleInput,
       cmlimit: "20",
       format: "json"
     };
@@ -22,11 +30,10 @@ $(document).ready(() => {
       method: "GET"
     }).then(response => {
       const pickedPage = response.query.categorymembers[randomPage].title;
-      renderKnowledge(pickedPage);
+      retrieveAndRenderKnowledge(pickedPage);
     });
-  });
-
-  function renderKnowledge(pickedPage) {
+  }
+  function retrieveAndRenderKnowledge(pickedPage) {
     const pageParams = {
       action: "query",
       titles: pickedPage,
@@ -45,23 +52,26 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
+      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a></p>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
         "<br>"
       );
+      $(".randomPageTitle").text(pickedPage);
       $(".renderhere").html(knowledgeToRender);
+      $(".randomPage").append(wikiPageA);
     });
   }
 
   $("#addSubject").on("click", () => {
     
-    // $.ajax("/api/burgers", {
-    //   type: "POST",
-    //   data: newBurger
-    // }).then(function() {
-    //   location.reload();
-    // });
+    $.ajax("/api/burgers", {
+      type: "POST",
+      data: newBurger
+    }).then(function() {
+      location.reload();
+    });
   });
   
 });
