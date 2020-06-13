@@ -2,7 +2,7 @@
 const bcrypt = require("bcryptjs");
 // Creating our User model
 module.exports = function(sequelize, DataTypes) {
-const User = sequelize.define("User", {
+  const User = sequelize.define("User", {
     // The email cannot be null, and must be a proper email before creation
     email: {
       type: DataTypes.STRING,
@@ -34,7 +34,7 @@ const User = sequelize.define("User", {
   });
 
   User.associate = function(models) {
-    User.hasMany(models.userCats, {
+    User.hasMany(models.Category, {
       onDelete: "cascade"
     });
   };
