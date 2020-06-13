@@ -13,15 +13,23 @@ h1 {
   font-size: 55px;
 }
 
-body, html {
+/* body, html {
   background-image: url("public/assets/linedpaper.png");
-}
+} */
 
 .loginbtn, .signupbtn {
   background-color: teal;
   color: white;
 }
 
-#card-body {
+.small-bg {
   background-color: #fdfd96;
+}
+
+.col-sm-3 {
+  margin: 45px;
+}
+
+.big-bg {
+  background-image: url("/public/assets/corkboard.jpg");
 }
