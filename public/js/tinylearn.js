@@ -2,11 +2,19 @@ $(document).ready(() => {
   const url = "https://en.wikipedia.org/w/api.php";
 
   // eslint-disable-next-line no-unused-vars
-  $(".GIVEMERANDOMPAGEBUTTON").on("click", catFromDb => {
+  $("#randomPageFromWiki").on("click", () => {
+    $.get("/api/categories").then(data => {
+      const passedCat = data.category;
+      findAPage(passedCat);
+    });
+  });
+
+  function findAPage(passedCat) {
+    const cmtitleInput = "Category:" + passedCat;
     const catParams = {
       action: "query",
       list: "categorymembers",
-      cmtitle: "Category:Programming",
+      cmtitle: cmtitleInput,
       cmlimit: "20",
       format: "json"
     };
@@ -22,11 +30,10 @@ $(document).ready(() => {
       method: "GET"
     }).then(response => {
       const pickedPage = response.query.categorymembers[randomPage].title;
-      renderKnowledge(pickedPage);
+      retrieveAndRenderKnowledge(pickedPage);
     });
-  });
-
-  function renderKnowledge(pickedPage) {
+  }
+  function retrieveAndRenderKnowledge(pickedPage) {
     const pageParams = {
       action: "query",
       titles: pickedPage,
@@ -45,23 +52,46 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
+      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a></p>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
         "<br>"
       );
+      $(".randomPageTitle").text(pickedPage);
       $(".renderhere").html(knowledgeToRender);
+      $(".randomPage").append(wikiPageA);
+    });
+    postPickedPage(pickedPage);
+  }
+  function postPickedPage(pickedPage) {
+    $.post("api/page", {
+      name: pickedPage
     });
   }
+  // $("#addSubject").on("click", () => {
+  //   const categoryToPost = $("#subjectName").val();
+  //   const possibleError = validateCat(categoryToPost);
+  //   console.log(possibleError);
+  // });
+  // function validateCat(categoryToPost) {
+  //   const cmtitleInput = "Category:" + categoryToPost;
+  //   const validateParams = {
+  //     action: "query",
+  //     list: "categorymembers",
+  //     cmtitle: cmtitleInput,
+  //     cmtype: "subcat",
+  //     format: "json"
+  //   };
 
-  $("#addSubject").on("click", () => {
-    
-    // $.ajax("/api/burgers", {
-    //   type: "POST",
-    //   data: newBurger
-    // }).then(function() {
-    //   location.reload();
-    // });
-  });
-  
+  //   let validateUrl = url + "?origin=*";
+  //   Object.keys(validateParams).forEach(key => {
+  //     validateUrl += "&" + key + "=" + validateParams[key];
+  //   });
+
+  //   fetch(validateUrl).then(response => {
+  //     const category = response.query.categorymembers;
+  //     return category[0].title;
+  //   });
+  // }
 });
