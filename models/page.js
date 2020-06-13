@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
   Page.associate = function(models) {
-    Page.belongsTo(models.Category, {
+    Page.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }
