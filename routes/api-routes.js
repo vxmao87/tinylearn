@@ -58,19 +58,40 @@ module.exports = function(app) {
       res.json();
     } else {
       // Otherwise, send info about the subjects the user will see
-      res.json({});
+      db.Category.findAll({}).then(dbCat => {
+        res.json(dbCat);
+      });
     }
   });
 
+  // Route for grabbing data about one subject using ID
+  app.get("/api/subject/:id", (req, res) => {
+    db.Category.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(dbCat => {
+      res.json(dbCat);
+    });
+  });
+
+  // Create a subject
   app.post("/api/subject/add", (req, res) => {
     db.Category.create({
       category: req.body.category
-    })
-      .then(() => {
-        res.status(200).end();
-      })
-      .catch(err => {
-        res.status(404).json(err);
-      });
+    }).then(dbCat => {
+      res.json(dbCat);
+    });
+  });
+
+  // Delete a subject
+  app.delete("/api/subject/:id", (req, res) => {
+    db.Category.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(dbCat => {
+      res.json(dbCat);
+    });
   });
 };
