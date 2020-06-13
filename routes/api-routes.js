@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+// const Sequelize = require("sequelize");
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -52,7 +53,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing data about a user's subjects
-  app.get("/api/subjects", (req, res) => {
+  app.get("/api/categories", (req, res) => {
     if (!req.user) {
       // If the user isn't logged in, nothing will show up
       res.json();
@@ -65,7 +66,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing data about one subject using ID
-  app.get("/api/subject/:id", (req, res) => {
+  app.get("/api/category/:id", (req, res) => {
     db.Category.findOne({
       where: {
         id: req.params.id
@@ -75,8 +76,17 @@ module.exports = function(app) {
     });
   });
 
+  // Route for finding a random subject
+  app.get("/api/category/", (req, res) => {
+    db.Category.findOne({
+      order: "rand()"
+    }).then(dbCat => {
+      res.json(dbCat);
+    });
+  });
+
   // Create a subject
-  app.post("/api/subject/add", (req, res) => {
+  app.post("/api/category/add", (req, res) => {
     db.Category.create({
       category: req.body.category
     }).then(dbCat => {
@@ -85,7 +95,7 @@ module.exports = function(app) {
   });
 
   // Delete a subject
-  app.delete("/api/subject/:id", (req, res) => {
+  app.delete("/api/category/:id", (req, res) => {
     db.Category.destroy({
       where: {
         id: req.params.id
