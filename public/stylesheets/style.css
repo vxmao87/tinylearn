@@ -12,3 +12,12 @@ h1 {
   font-family: orangeJuice;
   font-size: 55px;
 }
+
+body, html {
+  background-image: url("public/assets/linedpaper.png");
+}
+
+.loginbtn, .signupbtn {
+  background-color: teal;
+  color: white;
+}
