@@ -62,16 +62,36 @@ $(document).ready(() => {
       $(".renderhere").html(knowledgeToRender);
       $(".randomPage").append(wikiPageA);
     });
+    postPickedPage(pickedPage);
   }
-
-  $("#addSubject").on("click", () => {
-    
-    $.ajax("/api/burgers", {
-      type: "POST",
-      data: newBurger
-    }).then(function() {
-      location.reload();
+  function postPickedPage(pickedPage) {
+    $.post("api/page", {
+      name: pickedPage
     });
-  });
-  
+  }
+  // $("#addSubject").on("click", () => {
+  //   const categoryToPost = $("#subjectName").val();
+  //   const possibleError = validateCat(categoryToPost);
+  //   console.log(possibleError);
+  // });
+  // function validateCat(categoryToPost) {
+  //   const cmtitleInput = "Category:" + categoryToPost;
+  //   const validateParams = {
+  //     action: "query",
+  //     list: "categorymembers",
+  //     cmtitle: cmtitleInput,
+  //     cmtype: "subcat",
+  //     format: "json"
+  //   };
+
+  //   let validateUrl = url + "?origin=*";
+  //   Object.keys(validateParams).forEach(key => {
+  //     validateUrl += "&" + key + "=" + validateParams[key];
+  //   });
+
+  //   fetch(validateUrl).then(response => {
+  //     const category = response.query.categorymembers;
+  //     return category[0].title;
+  //   });
+  // }
 });
