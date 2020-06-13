@@ -33,6 +33,7 @@ $(document).ready(() => {
       retrieveAndRenderKnowledge(pickedPage);
     });
   }
+
   function retrieveAndRenderKnowledge(pickedPage) {
     const pageParams = {
       action: "query",
@@ -64,11 +65,13 @@ $(document).ready(() => {
     });
     postPickedPage(pickedPage);
   }
+
   function postPickedPage(pickedPage) {
     $.post("api/page", {
       name: pickedPage
     });
   }
+
   $("#addSubject").on("click", () => {
     const categoryToPost = $("#subjectName").val();
     const cmtitleInput = "Category:" + categoryToPost;
@@ -93,21 +96,21 @@ $(document).ready(() => {
       // eslint-disable-next-line eqeqeq
       if (possibleError == null) {
         $(".addSubjectResponse").text(
-          `We're sorry, but " + ${categoryToPost} + " isn't a valid category name.`
+          `We're sorry, but ${categoryToPost} isn't a valid category name.`
         );
         return;
         // eslint-disable-next-line no-else-return
       } else {
-        $(".addSubjectResponse").text(
-          `${categoryToPost} + " added to database.`
-        );
+        $(".addSubjectResponse").text(`${categoryToPost} added to database.`);
         postCat(categoryToPost);
       }
     });
   });
+
   function postCat(categoryToPost) {
     $.post("api/category", {
       name: categoryToPost
     });
   }
+  
 });
