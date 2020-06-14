@@ -5,7 +5,7 @@ form.login {
 
 @font-face {
   font-family: orangeJuice;
-  src: url("public/assets/orange_juice_2.0.ttf");
+  src: url("/public/assets/orange_juice_2.0.ttf");
 }
 
 h1 {
