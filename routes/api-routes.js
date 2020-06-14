@@ -78,7 +78,7 @@ module.exports = function(app) {
   });
 
   // Route for finding a random subject
-  app.get("/api/category/", (req, res) => {
+  app.get("/api/category", (req, res) => {
     db.Category.findOne({
       order: "rand()"
     }).then(dbCat => {
@@ -89,7 +89,7 @@ module.exports = function(app) {
   // Create a subject
   app.post("/api/category/add", (req, res) => {
     db.Category.create({
-      category: req.body.category
+      name: req.body.name
     }).then(dbCat => {
       res.json(dbCat);
     });

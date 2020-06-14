@@ -29,32 +29,31 @@
                 </div>
                 <div class="card-body big-bg">
                     <div class="row">
-                    <div class="card col-sm-3">
-                        <div class="card-body small-bg" style="height: 15rem; width:15rem;">
+                        {{#each page}}
+                        <div class="card col-sm-3" id="{{page}}">
                             <i class="fas fa-thumbtack"></i>
-                            {{#each category}}
-                            <div>{{category}}</div>
-                            {{/each }}
+                            <div class="card-header text-center">
+                                <h1>{{page}}</h1>
+                            </div>
+                            <div class="card-body small-bg" style="height: 15rem;   width:15rem;">
+                            </div>
                         </div>
-                    </div>
-                    <div class="card col-sm-3">
-                        <div class="card-body small-bg" style="height: 15rem; width:15rem;">
-                            <i class="fas fa-thumbtack"></i>
-                            {{#each category}}
-                            <div>{{category}}</div>
-                            {{/each }}
-                        </div>
-                    </div>
-                    <div class="card col-sm-3">
-                        <div class="card-body small-bg" style="height: 15rem; width:15rem;">
-                            <i class="fas fa-thumbtack"></i>
-                            {{#each category}}
-                            <div>{{category}}</div>
-                            {{/each }}
-                        </div>
-                    </div>
+                        {{/each }}
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1 class="clickedPageTitle"></h1>
+                </div>
+                <div class="card-body clickedPage">
+                    <p class="renderClickedPageHere"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
