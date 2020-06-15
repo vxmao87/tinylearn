@@ -3,8 +3,8 @@ $(document).ready(() => {
 
   // eslint-disable-next-line no-unused-vars
   $("#randomPageFromWiki").on("click", () => {
-    $.get("/api/categories").then(data => {
-      const passedCat = data.category;
+    $.get("/api/category").then(data => {
+      const passedCat = data.name;
       findAPage(passedCat);
     });
   });
@@ -108,9 +108,40 @@ $(document).ready(() => {
   });
 
   function postCat(categoryToPost) {
-    $.post("api/category", {
+    $.post("/api/category/add", {
       name: categoryToPost
     });
   }
-  
+
+  $(".col-sm-3").on("click", () => {
+    const clickedPage = $(this).attr("id");
+    const pageParams = {
+      action: "query",
+      titles: clickedPage,
+      prop: "extracts",
+      exintro: "",
+      format: "json",
+      explaintext: ""
+    };
+
+    let pageUrl = url + "?origin=*";
+    Object.keys(pageParams).forEach(key => {
+      pageUrl += "&" + key + "=" + pageParams[key];
+    });
+
+    $.ajax({
+      url: pageUrl,
+      method: "GET"
+    }).then(response => {
+      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a></p>`;
+      const pageId = Object.keys(response.query.pages)[0];
+      const knowledgeToRender = response.query.pages[pageId].extract.replace(
+        /\n/g,
+        "<br>"
+      );
+      $(".clickedPageTitle").text(clickedPage);
+      $(".renderClickedPageHere").html(knowledgeToRender);
+      $(".clickedPage").append(wikiPageA);
+    });
+  });
 });
