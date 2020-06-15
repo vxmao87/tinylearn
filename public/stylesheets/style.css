@@ -17,8 +17,8 @@ h1 {
   background-image: url("public/assets/linedpaper.png");
 } */
 
-.loginbtn, .signupbtn {
-  background-color: teal;
+.loginbtn, .signupbtn, .btn {
+  background-color: #5bc0de  ;
   color: white;
 }
 
@@ -32,4 +32,11 @@ h1 {
 
 .big-bg {
   background-image: url("/public/assets/corkboard.jpg");
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
