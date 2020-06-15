@@ -66,6 +66,17 @@ module.exports = function(app) {
     }
   });
 
+  // Route for grabbing all pages for one user
+  app.get("api/pages", (req, res) => {
+    if (!req.user) {
+      res.json();
+    } else {
+      db.Page.findAll({}).then(dbPage => {
+        res.json(dbPage);
+      });
+    }
+  });
+
   // Route for grabbing data about one subject using ID
   app.get("/api/category/:id", (req, res) => {
     db.Category.findOne({
@@ -74,6 +85,17 @@ module.exports = function(app) {
       }
     }).then(dbCat => {
       res.json(dbCat);
+    });
+  });
+
+  // Route for grabbing data for one page using ID
+  app.get("api/page/:id", (req, res) => {
+    db.Page.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(dbPage => {
+      res.json(dbPage);
     });
   });
 
@@ -95,6 +117,15 @@ module.exports = function(app) {
     });
   });
 
+  // Create a page
+  app.post("/api/page", (req, res) => {
+    db.Page.create({
+      name: req.body.name
+    }).then(dbPage => {
+      res.json(dbPage);
+    });
+  });
+
   // Delete a subject
   app.delete("/api/category/:id", (req, res) => {
     db.Category.destroy({
@@ -103,6 +134,16 @@ module.exports = function(app) {
       }
     }).then(dbCat => {
       res.json(dbCat);
+    });
+  });
+
+  app.delete("/api/page/:id", (req, res) => {
+    db.Page.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(dbPage => {
+      res.json(dbPage);
     });
   });
 };
