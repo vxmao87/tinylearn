@@ -32,7 +32,10 @@ $(document).ready(() => {
       url: catUrl,
       method: "GET"
     }).then(response => {
-      const pickedPage = response.query.categorymembers[randomPage].title;
+      let pickedPage = response.query.categorymembers[randomPage].title;
+      if (pickedPage.startsWith("Portal:")) {
+        pickedPage = response.query.categorymembers[randomPage + 1].title;
+      }
       retrieveAndRenderKnowledge(pickedPage);
     });
   }
