@@ -33,7 +33,7 @@ module.exports = function(app) {
   });
 
   app.get("/mylearns", isAuthenticated, (req, res) => {
-    console.log(req);
+    // console.log(req);
     db.page
       .findAll({
         where: {
@@ -41,7 +41,12 @@ module.exports = function(app) {
         }
       })
       .then(pageSet => {
-        res.render("mylearns", pageSet);
+        const hbsObject = {
+          pages: pageSet
+        };
+        console.log(hbsObject.pages);
+
+        res.render("mylearns", hbsObject);
       })
       .catch(err => {
         console.log(err);

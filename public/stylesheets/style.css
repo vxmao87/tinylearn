@@ -13,10 +13,6 @@ h1 {
   font-size: 55px;
 }
 
-/* body, html {
-  background-image: url("public/assets/linedpaper.png");
-} */
-
 .loginbtn, .signupbtn, .btn {
   background-color: #5bc0de  ;
   color: white;
@@ -42,5 +38,10 @@ h1 {
 }
 
 .randomPage {
+  background-color: #fdfd96;
+}
+
+.myLearnsCard {
+  margin-top: 15px;
   background-color: #fdfd96;
 }
