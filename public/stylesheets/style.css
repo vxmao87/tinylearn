@@ -23,6 +23,7 @@ h1 {
 }
 
 .col-sm-3 {
+  margin-left: 7px;
   margin: 30px;
 }
 
@@ -44,4 +45,12 @@ h1 {
 .myLearnsCard {
   margin-top: 15px;
   background-color: #fdfd96;
+}
+
+.fa-thumbtack {
+  margin-right: 7px;
+}
+
+.fa-trash {
+  margin-left: 7px;
 }
