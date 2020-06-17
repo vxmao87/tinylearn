@@ -18,7 +18,7 @@ $(document).ready(() => {
       action: "query",
       list: "categorymembers",
       cmtitle: cmtitleInput,
-      cmlimit: "20",
+      cmlimit: "50",
       format: "json"
     };
 
@@ -26,15 +26,19 @@ $(document).ready(() => {
     Object.keys(catParams).forEach(
       key => (catUrl += "&" + key + "=" + catParams[key])
     );
-    const randomPage = Math.floor(Math.random() * 20);
 
     $.ajax({
       url: catUrl,
       method: "GET"
     }).then(response => {
+      let randomPage = Math.floor(Math.random() * 50);
       let pickedPage = response.query.categorymembers[randomPage].title;
-      if (pickedPage.startsWith("Portal:")) {
-        pickedPage = response.query.categorymembers[randomPage + 1].title;
+      while (
+        pickedPage.startsWith("Portal:") ||
+        pickedPage.startsWith("Category:")
+      ) {
+        randomPage = Math.floor(Math.random() * 50);
+        pickedPage = response.query.categorymembers[randomPage].title;
       }
       retrieveAndRenderKnowledge(pickedPage);
     });
