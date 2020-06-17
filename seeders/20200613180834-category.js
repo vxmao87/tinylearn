@@ -6,7 +6,7 @@ module.exports = {
     // Return a promise to correctly handle asynchronicity.
     return queryInterface.bulkInsert("Categories", [
       {
-        name: "Mathematics",
+        name: "Programming_languages",
         createdAt: new Date(),
         updatedAt: new Date()
       },

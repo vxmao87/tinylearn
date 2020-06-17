@@ -18,7 +18,7 @@ $(document).ready(() => {
       action: "query",
       list: "categorymembers",
       cmtitle: cmtitleInput,
-      cmlimit: "50",
+      cmlimit: "75",
       format: "json"
     };
 
@@ -31,13 +31,17 @@ $(document).ready(() => {
       url: catUrl,
       method: "GET"
     }).then(response => {
-      let randomPage = Math.floor(Math.random() * 50);
+      let randomPage = Math.floor(
+        Math.random() * response.query.categorymembers.length
+      );
       let pickedPage = response.query.categorymembers[randomPage].title;
       while (
         pickedPage.startsWith("Portal:") ||
         pickedPage.startsWith("Category:")
       ) {
-        randomPage = Math.floor(Math.random() * 50);
+        randomPage = Math.floor(
+          Math.random() * response.query.categorymembers.length
+        );
         pickedPage = response.query.categorymembers[randomPage].title;
       }
       retrieveAndRenderKnowledge(pickedPage);
@@ -120,8 +124,9 @@ $(document).ready(() => {
   });
 
   function postCat(categoryToPost) {
+    const rewrittenCategoryToPost = categoryToPost.replace(/ /g, "_");
     $.post("/api/category/add", {
-      name: categoryToPost
+      name: rewrittenCategoryToPost
     });
   }
 
