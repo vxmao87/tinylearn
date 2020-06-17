@@ -6,7 +6,7 @@ Bored? LEARN SOMETHING!
 
 TinyLearn serves you one random subject to learn about a day. You can save your learns to keep on learnin' at a later time. With all the extra time we have nowadays, we hope TinyLearn can help make a big impact in your day.
 
-This app uses MVC which includes a model, handlebars and a connection.
+This app uses MVC which includes a model, handlebars and a connection. Passport is used to make sure the user is logged in and can access certain pages associated with their account.
 
 It uses sequelize to create a database and a seeder file for some pre-fed information.
 ## Table of Contents
@@ -50,3 +50,5 @@ Vinh Xiu Mao, Eric Purrington & Julie Ritz
 None- use console.log if you need to troubleshoot something.
 ## Questions
 Reach out to us if you have any questions!
+
+![image](https://user-images.githubusercontent.com/60047114/84955574-6135ca00-b0ac-11ea-913e-80c0f46e3065.png)
