@@ -1,4 +1,4 @@
-$(function() {
+$(() => {
   const url = "https://en.wikipedia.org/w/api.php";
 
   // eslint-disable-next-line no-unused-vars
@@ -165,14 +165,14 @@ $(function() {
   //   });
   // });
 
-  $(".fa-trash").on("click", function(event) {
-    var id = $(this).attr("id");
-
-    $.ajax("/api/page/" + id, {
-      type: "DELETE"
+  $(".fa-trash").on("click", function() {
+    const id = $(this).attr("id");
+    console.log(id);
+    $.ajax({
+      method: "DELETE",
+      url: "/api/page/" + id
     }).then(() => {
-        location.reload();
-      }
-    );
+      location.reload();
+    });
   });
 });
