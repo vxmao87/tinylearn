@@ -61,7 +61,7 @@ module.exports = function(app) {
       res.json();
     } else {
       // Otherwise, send info about the subjects the user will see
-      db.Category.findAll({}).then(dbCat => {
+      db.category.findAll({}).then(dbCat => {
         res.json(dbCat);
       });
     }
