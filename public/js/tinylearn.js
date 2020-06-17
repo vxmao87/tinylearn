@@ -53,7 +53,7 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a></p>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
@@ -61,7 +61,7 @@ $(document).ready(() => {
       );
       $(".randomPageTitle").text(pickedPage);
       $(".renderhere").html(knowledgeToRender);
-      $(".randomPage").append(wikiPageA);
+      $(".randomPageLink").html(wikiPageA);
     });
     postPickedPage(pickedPage);
   }
@@ -133,7 +133,7 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a></p>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
@@ -141,7 +141,7 @@ $(document).ready(() => {
       );
       $(".clickedPageTitle").text(clickedPage);
       $(".renderClickedPageHere").html(knowledgeToRender);
-      $(".clickedPage").append(wikiPageA);
+      $(".clickedPageLink").html(wikiPageA);
     });
   });
 });
