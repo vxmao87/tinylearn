@@ -61,14 +61,14 @@ module.exports = function(app) {
       res.json();
     } else {
       // Otherwise, send info about the subjects the user will see
-      db.Category.findAll({}).then(dbCat => {
+      db.category.findAll({}).then(dbCat => {
         res.json(dbCat);
       });
     }
   });
 
   // Route for grabbing all pages for one user
-  app.get("api/pages", (req, res) => {
+  app.get("/api/pages", (req, res) => {
     if (!req.user) {
       res.json();
     } else {
@@ -98,7 +98,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing data for one page using ID
-  app.get("api/page/:id", (req, res) => {
+  app.get("/api/page/:id", (req, res) => {
     db.page
       .findOne({
         where: {
