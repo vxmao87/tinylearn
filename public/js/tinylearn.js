@@ -3,6 +3,9 @@ $(document).ready(() => {
 
   // eslint-disable-next-line no-unused-vars
   $("#randomPageFromWiki").on("click", () => {
+    $(".randomPageTitle").text("");
+    $(".renderHere").empty();
+    $(".randomPageLink").empty();
     $.get("/api/category").then(data => {
       const passedCat = data.name;
       findAPage(passedCat);
@@ -15,7 +18,7 @@ $(document).ready(() => {
       action: "query",
       list: "categorymembers",
       cmtitle: cmtitleInput,
-      cmlimit: "20",
+      cmlimit: "75",
       format: "json"
     };
 
@@ -23,13 +26,24 @@ $(document).ready(() => {
     Object.keys(catParams).forEach(
       key => (catUrl += "&" + key + "=" + catParams[key])
     );
-    const randomPage = Math.floor(Math.random() * 20);
 
     $.ajax({
       url: catUrl,
       method: "GET"
     }).then(response => {
-      const pickedPage = response.query.categorymembers[randomPage].title;
+      let randomPage = Math.floor(
+        Math.random() * response.query.categorymembers.length
+      );
+      let pickedPage = response.query.categorymembers[randomPage].title;
+      while (
+        pickedPage.startsWith("Portal:") ||
+        pickedPage.startsWith("Category:")
+      ) {
+        randomPage = Math.floor(
+          Math.random() * response.query.categorymembers.length
+        );
+        pickedPage = response.query.categorymembers[randomPage].title;
+      }
       retrieveAndRenderKnowledge(pickedPage);
     });
   }
@@ -53,15 +67,15 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a></p>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
         "<br>"
       );
       $(".randomPageTitle").text(pickedPage);
-      $(".renderhere").html(knowledgeToRender);
-      $(".randomPage").append(wikiPageA);
+      $(".renderHere").html(knowledgeToRender);
+      $(".randomPageLink").html(wikiPageA);
     });
     postPickedPage(pickedPage);
   }
@@ -73,7 +87,9 @@ $(document).ready(() => {
   }
 
   $("#addSubject").on("click", () => {
+    $(".addSubjectResponse").text("");
     const categoryToPost = $("#subjectName").val();
+    $("#subjectName").val("");
     const cmtitleInput = "Category:" + categoryToPost;
     const validateParams = {
       action: "query",
@@ -108,12 +124,16 @@ $(document).ready(() => {
   });
 
   function postCat(categoryToPost) {
+    const rewrittenCategoryToPost = categoryToPost.replace(/ /g, "_");
     $.post("/api/category/add", {
-      name: categoryToPost
+      name: rewrittenCategoryToPost
     });
   }
 
   $(".col-sm-3").on("click", () => {
+    $(".clickedPageTitle").text("");
+    $(".renderClickedPageHere").empty();
+    $(".clickedPageLink").empty();
     const clickedPage = $(this).attr("id");
     const pageParams = {
       action: "query",
@@ -133,7 +153,7 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `<p>Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a></p>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
@@ -141,7 +161,7 @@ $(document).ready(() => {
       );
       $(".clickedPageTitle").text(clickedPage);
       $(".renderClickedPageHere").html(knowledgeToRender);
-      $(".clickedPage").append(wikiPageA);
+      $(".clickedPageLink").html(wikiPageA);
     });
   });
 });
