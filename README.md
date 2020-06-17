@@ -2,11 +2,13 @@
 ## Link
 Placeholder
 ## Description
-Bored? EAT A BURGER! This app helps you order burgers and keep track of which ones you've eaten.
+Bored? LEARN SOMETHING!
 
-This app uses MVC which includes a model, handlebars, and a connection & orm.
+TinyLearn serves you one random subject to learn about a day. You can save your learns to keep on learnin' at a later time. With all the extra time we have nowadays, we hope TinyLearn can help make a big impact in your day.
 
-It uses MySQL Workbench to create a database and seeds for some pre-fed information.
+This app uses MVC which includes a model, handlebars and a connection.
+
+It uses sequelize to create a database and a seeder file for some pre-fed information.
 ## Table of Contents
 * [Installation](#installation)
 
@@ -20,9 +22,20 @@ It uses MySQL Workbench to create a database and seeds for some pre-fed informat
 
 * [Questions](#questions)
 ## Installation
-Pull from this repository. Check dependencies and make sure to run npm i for all necessary- you will need express, dotenv, express-handlebars and mysql.
+Pull from this repository. Check dependencies and make sure to run npm i for all necessary- you will need:
+- bcryptjs
+- dotenv
+- express
+- express-handlebars
+- express-session
+- mysql2
+- passport
+- passport-local
+- pg
+- pg-hstore
+- sequelize
 ## Usage
-Use MySQL Workbench to add the schema and seeds into a working database with the appropriate tables.
+Use sequelize to get the database running. Make sure to run the command "npx sequelize db:seed:all" to add seeds.
 
 Please pay attention to the .env.sample file. You will need to create your own .env file with the same parameters and your OWN credentials to use this app.
 
@@ -37,5 +50,3 @@ Vinh Xiu Mao, Eric Purrington & Julie Ritz
 None- use console.log if you need to troubleshoot something.
 ## Questions
 Reach out to us if you have any questions!
-
-![image](https://user-images.githubusercontent.com/60047114/83581502-d5d90800-a4f3-11ea-992f-87ba976f8bd6.png)
