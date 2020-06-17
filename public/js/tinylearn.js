@@ -1,4 +1,4 @@
-$(document).ready(() => {
+$(function() {
   const url = "https://en.wikipedia.org/w/api.php";
 
   // eslint-disable-next-line no-unused-vars
@@ -67,7 +67,7 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}">${pickedPage}</a>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${pickedPage}" target="_blank">${pickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
@@ -130,7 +130,7 @@ $(document).ready(() => {
     });
   }
 
-  $(".col-sm-3").on("click", () => {
+  $(".myLearnsCard").on("click", () => {
     $(".clickedPageTitle").text("");
     $(".renderClickedPageHere").empty();
     $(".clickedPageLink").empty();
@@ -153,7 +153,7 @@ $(document).ready(() => {
       url: pageUrl,
       method: "GET"
     }).then(response => {
-      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}">${clickedPage}</a>`;
+      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}" target="_blank">${clickedPage}</a>`;
       const pageId = Object.keys(response.query.pages)[0];
       const knowledgeToRender = response.query.pages[pageId].extract.replace(
         /\n/g,
