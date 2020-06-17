@@ -76,7 +76,9 @@ $(document).ready(() => {
   }
 
   $("#addSubject").on("click", () => {
+    $(".addSubjectResponse").text("");
     const categoryToPost = $("#subjectName").val();
+    $("#subjectName").val("");
     const cmtitleInput = "Category:" + categoryToPost;
     const validateParams = {
       action: "query",
