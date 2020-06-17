@@ -20,7 +20,7 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     db.User.create({
       email: req.body.email,
       password: req.body.password
@@ -72,9 +72,15 @@ module.exports = function(app) {
     if (!req.user) {
       res.json();
     } else {
-      db.page.findAll({}).then(dbPage => {
-        res.json(dbPage);
-      });
+      db.page
+        .findAll({
+          where: {
+            UserId: req.user.id
+          }
+        })
+        .then(page => {
+          res.json(page);
+        });
     }
   });
 
@@ -99,8 +105,8 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(dbPage => {
-        res.json(dbPage);
+      .then(page => {
+        res.json(page);
       });
   });
 
@@ -128,13 +134,14 @@ module.exports = function(app) {
 
   // Create a page
   app.post("/api/page", (req, res) => {
+    console.log(req);
     db.page
       .create({
         name: req.body.name,
-        userId: req.user.id
+        UserId: req.user.id
       })
-      .then(dbPage => {
-        res.json(dbPage);
+      .then(page => {
+        res.json(page);
       });
   });
 
@@ -158,8 +165,8 @@ module.exports = function(app) {
           id: req.params.id
         }
       })
-      .then(dbPage => {
-        res.json(dbPage);
+      .then(page => {
+        res.json(page);
       });
   });
 };

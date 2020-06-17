@@ -30,14 +30,16 @@
                 </div>
                 <div class="card-body big-bg">
                     <div class="row">
-                        {{#each page}}
-                        <div class="card col-sm-3" id="{{page}}">
-                            <i class="fas fa-thumbtack"></i>
-                            <div class="card-header text-center">
-                                <h1>{{page}}</h1>
+                        {{#each pages}}
+                        <div class="col-sm-3">
+                            <div class="card myLearnsCard" id="{{dataValues.name}}">
+                                <div class="card-header text-center">
+                                    <i class="fas fa-thumbtack"></i><h4>{{dataValues.name}}</h4>
+                                    <a href="https://en.wikipedia.org/wiki/{{dataValues.name}}" target="_blank">Learn more!</a>
+                                </div>
                             </div>
-                            <div class="card-body small-bg" style="height: 15rem;   width:15rem;">
-                            </div>
+                            {{!-- <div class="card-body small-bg" style="height: 15rem;   width:15rem;">
+                            </div> --}}
                         </div>
                         {{/each }}
                     </div>
@@ -53,6 +55,7 @@
                 </div>
                 <div class="card-body clickedPage">
                     <p class="renderClickedPageHere"></p>
+                    <p class="clickedPageLink"></p>
                 </div>
             </div>
         </div>
