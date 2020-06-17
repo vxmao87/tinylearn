@@ -23,11 +23,11 @@ h1 {
 }
 
 .col-sm-3 {
-  margin: 45px;
+  margin: 30px;
 }
 
 .big-bg {
-  background-image: url("/public/assets/corkboard.jpg");
+  background-image: url("/assets/corkboard.jpg");
 }
 
 .center {
