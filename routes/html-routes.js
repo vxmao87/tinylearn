@@ -33,17 +33,18 @@ module.exports = function(app) {
   });
 
   app.get("/mylearns", isAuthenticated, (req, res) => {
-    const pageSet = db.page
+    console.log(req);
+    db.page
       .findAll({
         where: {
-          userId: db.user.id
+          UserId: req.user.id
         }
       })
-      .then(err => {
-        if (err) {
-          throw err;
-        }
+      .then(pageSet => {
         res.render("mylearns", pageSet);
+      })
+      .catch(err => {
+        console.log(err);
       });
   });
 };
