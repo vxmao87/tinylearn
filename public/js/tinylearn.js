@@ -130,38 +130,49 @@ $(function() {
     });
   }
 
-  $(".myLearnsCard").on("click", () => {
-    $(".clickedPageTitle").text("");
-    $(".renderClickedPageHere").empty();
-    $(".clickedPageLink").empty();
-    const clickedPage = $(this).attr("id");
-    const pageParams = {
-      action: "query",
-      titles: clickedPage,
-      prop: "extracts",
-      exintro: "",
-      format: "json",
-      explaintext: ""
-    };
+  // $(".myLearnsCard").on("click", () => {
+  //   $(".clickedPageTitle").text("");
+  //   $(".renderClickedPageHere").empty();
+  //   $(".clickedPageLink").empty();
+  //   const clickedPage = $(this).attr("id");
+  //   const pageParams = {
+  //     action: "query",
+  //     titles: clickedPage,
+  //     prop: "extracts",
+  //     exintro: "",
+  //     format: "json",
+  //     explaintext: ""
+  //   };
 
-    let pageUrl = url + "?origin=*";
-    Object.keys(pageParams).forEach(key => {
-      pageUrl += "&" + key + "=" + pageParams[key];
-    });
+  //   let pageUrl = url + "?origin=*";
+  //   Object.keys(pageParams).forEach(key => {
+  //     pageUrl += "&" + key + "=" + pageParams[key];
+  //   });
 
-    $.ajax({
-      url: pageUrl,
-      method: "GET"
-    }).then(response => {
-      const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}" target="_blank">${clickedPage}</a>`;
-      const pageId = Object.keys(response.query.pages)[0];
-      const knowledgeToRender = response.query.pages[pageId].extract.replace(
-        /\n/g,
-        "<br>"
-      );
-      $(".clickedPageTitle").text(clickedPage);
-      $(".renderClickedPageHere").html(knowledgeToRender);
-      $(".clickedPageLink").html(wikiPageA);
-    });
+  //   $.ajax({
+  //     url: pageUrl,
+  //     method: "GET"
+  //   }).then(response => {
+  //     const wikiPageA = `Learn more at <a href="https://en.wikipedia.org/wiki/${clickedPage}" target="_blank">${clickedPage}</a>`;
+  //     const pageId = Object.keys(response.query.pages)[0];
+  //     const knowledgeToRender = response.query.pages[pageId].extract.replace(
+  //       /\n/g,
+  //       "<br>"
+  //     );
+  //     $(".clickedPageTitle").text(clickedPage);
+  //     $(".renderClickedPageHere").html(knowledgeToRender);
+  //     $(".clickedPageLink").html(wikiPageA);
+  //   });
+  // });
+
+  $(".fa-trash").on("click", function(event) {
+    var id = $(this).attr("id");
+
+    $.ajax("/api/page/" + id, {
+      type: "DELETE"
+    }).then(() => {
+        location.reload();
+      }
+    );
   });
 });
