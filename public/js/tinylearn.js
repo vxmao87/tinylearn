@@ -3,6 +3,9 @@ $(document).ready(() => {
 
   // eslint-disable-next-line no-unused-vars
   $("#randomPageFromWiki").on("click", () => {
+    $(".randomPageTitle").text("");
+    $(".renderHere").empty();
+    $(".randomPageLink").empty();
     $.get("/api/category").then(data => {
       const passedCat = data.name;
       findAPage(passedCat);
@@ -60,7 +63,7 @@ $(document).ready(() => {
         "<br>"
       );
       $(".randomPageTitle").text(pickedPage);
-      $(".renderhere").html(knowledgeToRender);
+      $(".renderHere").html(knowledgeToRender);
       $(".randomPageLink").html(wikiPageA);
     });
     postPickedPage(pickedPage);
@@ -114,6 +117,9 @@ $(document).ready(() => {
   }
 
   $(".col-sm-3").on("click", () => {
+    $(".clickedPageTitle").text("");
+    $(".renderClickedPageHere").empty();
+    $(".clickedPageLink").empty();
     const clickedPage = $(this).attr("id");
     const pageParams = {
       action: "query",
