@@ -68,7 +68,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing all pages for one user
-  app.get("api/pages", (req, res) => {
+  app.get("/api/pages", (req, res) => {
     if (!req.user) {
       res.json();
     } else {
@@ -98,7 +98,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing data for one page using ID
-  app.get("api/page/:id", (req, res) => {
+  app.get("/api/page/:id", (req, res) => {
     db.page
       .findOne({
         where: {
