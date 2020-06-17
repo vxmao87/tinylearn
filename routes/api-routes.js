@@ -1,6 +1,7 @@
 // Requiring our models and passport as we've configured it
 const db = require("../models");
 const passport = require("../config/passport");
+const { sequelize } = require("../models");
 // const Sequelize = require("sequelize");
 
 module.exports = function(app) {
@@ -66,43 +67,99 @@ module.exports = function(app) {
     }
   });
 
+  // Route for grabbing all pages for one user
+  app.get("api/pages", (req, res) => {
+    if (!req.user) {
+      res.json();
+    } else {
+      db.page.findAll({}).then(dbPage => {
+        res.json(dbPage);
+      });
+    }
+  });
+
   // Route for grabbing data about one subject using ID
   app.get("/api/category/:id", (req, res) => {
-    db.Category.findOne({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbCat => {
-      res.json(dbCat);
-    });
+    db.category
+      .findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbCat => {
+        res.json(dbCat);
+      });
+  });
+
+  // Route for grabbing data for one page using ID
+  app.get("api/page/:id", (req, res) => {
+    db.page
+      .findOne({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbPage => {
+        res.json(dbPage);
+      });
   });
 
   // Route for finding a random subject
   app.get("/api/category", (req, res) => {
-    db.Category.findOne({
-      order: "rand()"
-    }).then(dbCat => {
-      res.json(dbCat);
-    });
+    db.category
+      .findOne({
+        order: sequelize.random()
+      })
+      .then(dbCat => {
+        res.json(dbCat);
+      });
   });
 
   // Create a subject
   app.post("/api/category/add", (req, res) => {
-    db.Category.create({
-      name: req.body.name
-    }).then(dbCat => {
-      res.json(dbCat);
-    });
+    db.category
+      .create({
+        name: req.body.name
+      })
+      .then(dbCat => {
+        res.json(dbCat);
+      });
+  });
+
+  // Create a page
+  app.post("/api/page", (req, res) => {
+    db.page
+      .create({
+        name: req.body.name,
+        userId: req.user.id
+      })
+      .then(dbPage => {
+        res.json(dbPage);
+      });
   });
 
   // Delete a subject
   app.delete("/api/category/:id", (req, res) => {
-    db.Category.destroy({
-      where: {
-        id: req.params.id
-      }
-    }).then(dbCat => {
-      res.json(dbCat);
-    });
+    db.category
+      .destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbCat => {
+        res.json(dbCat);
+      });
+  });
+
+  app.delete("/api/page/:id", (req, res) => {
+    db.page
+      .destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      .then(dbPage => {
+        res.json(dbPage);
+      });
   });
 };
