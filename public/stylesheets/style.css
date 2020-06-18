@@ -14,7 +14,7 @@ h1 {
 }
 
 .loginbtn, .signupbtn, .btn {
-  background-color: #5bc0de  ;
+  background-color: #5bc0de;
   color: white;
 }
 
@@ -22,9 +22,9 @@ h1 {
   background-color: #fdfd96;
 }
 
-.col-sm-3 {
+/* .col-sm-3 {
   margin: 35px;
-}
+} */
 
 .big-bg {
   background-image: url("/assets/corkboard.jpg");
@@ -48,8 +48,18 @@ h1 {
 
 .fa-thumbtack {
   margin-right: 7px;
+  color: #ba53de;
 }
 
 .fa-trash {
   margin-left: 7px;
+  color: red;
+}
+
+.fa-trash:hover {
+  cursor: pointer;
+}
+
+a {
+  color: #5bc0de;
 }

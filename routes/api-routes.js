@@ -54,6 +54,7 @@ module.exports = function(app) {
     }
   });
 
+  // Unused
   // Route for grabbing data about a user's subjects
   app.get("/api/categories", (req, res) => {
     if (!req.user) {
@@ -84,6 +85,7 @@ module.exports = function(app) {
     }
   });
 
+  // Unused
   // Route for grabbing data about one subject using ID
   app.get("/api/category/:id", (req, res) => {
     db.category
@@ -97,6 +99,7 @@ module.exports = function(app) {
       });
   });
 
+  // Unused
   // Route for grabbing data for one page using ID
   app.get("/api/page/:id", (req, res) => {
     db.page
@@ -134,7 +137,6 @@ module.exports = function(app) {
 
   // Create a page
   app.post("/api/page", (req, res) => {
-    console.log(req);
     db.page
       .create({
         name: req.body.name,
@@ -145,6 +147,7 @@ module.exports = function(app) {
       });
   });
 
+  // Unused
   // Delete a subject
   app.delete("/api/category/:id", (req, res) => {
     db.category
