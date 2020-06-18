@@ -47,7 +47,7 @@ None
 ## Contributors
 Vinh Xiu Mao, Eric Purrington & Julie Ritz
 ## Tests
-None- use console.log if you need to troubleshoot something.
+None - use console.log if you need to troubleshoot something.
 ## Questions
 Reach out to us if you have any questions!
 

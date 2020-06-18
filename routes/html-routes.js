@@ -44,8 +44,6 @@ module.exports = function(app) {
         const hbsObject = {
           pages: pageSet
         };
-        console.log(hbsObject.pages);
-
         res.render("mylearns", hbsObject);
       })
       .catch(err => {
