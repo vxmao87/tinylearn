@@ -69,6 +69,7 @@ module.exports = function(app) {
   });
 
   // Route for grabbing all pages for one user
+  // User must be logged in for route to work
   app.get("/api/pages", (req, res) => {
     if (!req.user) {
       res.json();
@@ -161,6 +162,7 @@ module.exports = function(app) {
       });
   });
 
+  // Delete a page based on ID
   app.delete("/api/page/:id", (req, res) => {
     db.page
       .destroy({
