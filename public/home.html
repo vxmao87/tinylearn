@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="./stylesheets/style.css" type="text/css" />
+    <title>TinyLearn</title>
+</head>
+<body>
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+            <img src="./assets/book.png" alt="Book" width="70" height="70" />
+            <img src="./assets/tinylearn.png" alt="TinyLearn" width="120" height="50" />
+            </div>
+            <div>
+                <a class="navbar-brand" href="/">
+                    Home
+                </a>
+                <a class="navbar-brand" href="/mylearns">
+                    MyLearns
+                </a>
+                <a class="navbar-brand" href="/about">
+                    About
+                </a>
+                <a class="navbar-brand" href="/logout">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Add a category to our database</h1>
+                        <img src="./assets/red-squiggle.png" class="center" alt="underline" width="450" height="45"/>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="Add a subject..." id="subjectName">
+                            <div class="input-group-append">
+                                <button class="btn btn-info" type="button" id="addSubject">Add it!</button>
+                            </div>
+                        </div>
+                        <p class="addSubjectResponse"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <button class="btn btn-info" type="button" id="randomPageFromWiki">Give me a random learn!</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Your learn for today is...</h1>
+                        <img src="./assets/red-squiggle.png" class="center" alt="underline" width="450" height="45"/>
+                    </div>
+                    <div class="card-body randomPage">
+                        <i class="fas fa-thumbtack"></i><h3 class="randomPageTitle"></h3>
+                        <p class="renderHere"></p>
+                        <p class="randomPageLink"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="./js/tinylearn.js"></script>
+</body>
+</html>

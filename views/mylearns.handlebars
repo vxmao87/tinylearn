@@ -1,0 +1,48 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <img src="assets/book.png" alt="Book" width="70" height="70" />
+            <img src="assets/tinylearn.png" alt="TinyLearn" width="120" height="50" />
+        </div>
+        <div>
+            <a class="navbar-brand" href="/">
+                Home
+            </a>
+            <a class="navbar-brand" href="/mylearns">
+                MyLearns
+            </a>
+            <a class="navbar-brand" href="/about">
+                About
+            </a>
+            <a class="navbar-brand" href="/logout">
+                Logout
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container my-5">
+    <div class="row">
+        <div class="col">
+            <div class="card">
+                <div class="card-header text-center">
+                    <h1>Check out your past learns!</h1>
+                    <img src="./assets/red-squiggle.png" class="center" alt="underline" width="450" height="45"/>              
+                </div>
+                <div class="card-body big-bg">
+                    <div class="row">
+                        {{#each pages}}
+                        <div class="col-sm-3">
+                            <div class="card myLearnsCard" id="{{dataValues.name}}">
+                                <div class="card-header text-center">
+                                    <i class="fas fa-thumbtack"></i><i class="fa fa-trash" id="{{dataValues.id}}"></i><h4>{{dataValues.name}}</h4>
+                                    <a href="https://en.wikipedia.org/wiki/{{dataValues.name}}" target="_blank">Learn more!</a>
+                                </div>
+                            </div>
+                        </div>
+                        {{/each }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

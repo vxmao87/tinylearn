@@ -1,0 +1,65 @@
+form.signup,
+form.login {
+  margin-top: 50px;
+}
+
+@font-face {
+  font-family: orangeJuice;
+  src: url("orange_juice_2.0.ttf");
+}
+
+h1 {
+  font-family: orangeJuice;
+  font-size: 55px;
+}
+
+.loginbtn, .signupbtn, .btn {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.small-bg {
+  background-color: #fdfd96;
+}
+
+/* .col-sm-3 {
+  margin: 35px;
+} */
+
+.big-bg {
+  background-image: url("/assets/corkboard.jpg");
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.randomPage {
+  background-color: #fdfd96;
+}
+
+.myLearnsCard {
+  margin-top: 15px;
+  background-color: #fdfd96;
+}
+
+.fa-thumbtack {
+  margin-right: 7px;
+  color: #ba53de;
+}
+
+.fa-trash {
+  margin-left: 7px;
+  color: red;
+}
+
+.fa-trash:hover {
+  cursor: pointer;
+}
+
+a {
+  color: #5bc0de;
+}
