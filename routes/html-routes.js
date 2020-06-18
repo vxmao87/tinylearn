@@ -28,10 +28,13 @@ module.exports = function(app) {
     res.sendFile(path.join(__dirname, "../public/home.html"));
   });
 
+  // Send the user to the "About" page
   app.get("/about", (req, res) => {
     res.sendFile(path.join(__dirname, "../public/about.html"));
   });
 
+  // Render the "mylearns" page, where the user's past learns
+  // are stored in a board-like database
   app.get("/mylearns", isAuthenticated, (req, res) => {
     // console.log(req);
     db.page
